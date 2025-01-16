@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ibrahim
+  labels:
+    env: prod
+
+spec:
+  replicas: 3
+  strategy:
+    type: Recreate
+    # type: RollingUpdate
+    # rollingUpdate:
+    #   maxSurge: 25%
+    #   maxUnavailable: 25%
+  selector:
+    matchLabels:
+      env: prod
+  template:
+    metadata:
+      name: nginx
+      labels:
+        env: prod
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+      
